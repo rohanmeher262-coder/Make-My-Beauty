@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>MakeMyBeauty · Unisex Salon</title>
+  <!-- Google Fonts: bold serif + clean sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    /* ----- RESET & BASE ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #faf7f2;
+      color: #2e2a27;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ----- TYPOGRAPHY ----- */
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .section-title {
+      font-size: 2.8rem;
+      margin-bottom: 0.8rem;
+      color: #2e2a27;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 70px;
+      height: 3px;
+      background: #b89a7b;
+      opacity: 0.5;
+    }
+    .section-sub {
+      font-size: 1.05rem;
+      color: #6f6259;
+      max-width: 640px;
+      margin-top: 0.5rem;
+      font-weight: 300;
+    }
+
+    /* ----- BUTTONS (with animation) ----- */
+    .btn-primary {
+      background: #2e2a27;
+      color: #faf7f2;
+      padding: 0.9rem 2.6rem;
+      border: none;
+      border-radius: 0;
+      font-weight: 500;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.6s ease;
+    }
+    .btn-primary:hover::after {
+      left: 100%;
+    }
+    .btn-primary:hover {
+      background: #4a413c;
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #2e2a27;
+      padding: 0.9rem 2.6rem;
+      border: 1px solid #2e2a27;
+      border-radius: 0;
+      font-weight: 500;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-outline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: #2e2a27;
+      transition: width 0.4s ease;
+      z-index: -1;
+    }
+    .btn-outline:hover {
+      color: #faf7f2;
+      transform: translateY(-3px);
+    }
+    .btn-outline:hover::before {
+      width: 100%;
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: #fff;
+      padding: 0.9rem 2.6rem;
+      border: none;
+      border-radius: 0;
+      font-weight: 500;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-whatsapp::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .btn-whatsapp:hover::after {
+      opacity: 1;
+    }
+    .btn-whatsapp:hover {
+      background: #1da851;
+      transform: translateY(-3px) scale(1.01);
+    }
+
+    /* ----- HEADER / NAV (glass effect) ----- */
+    .navbar {
+      padding: 1.2rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      background: rgba(250, 247, 242, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(46, 42, 39, 0.04);
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      color: #2e2a27;
+      animation: fadeSlideDown 0.8s ease forwards;
+    }
+    .logo span {
+      color: #b89a7b;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.2rem 1.8rem;
+      animation: fadeSlideDown 0.8s ease 0.1s forwards;
+      opacity: 0;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #2e2a27;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      transition: all 0.3s ease;
+      padding: 0.2rem 0;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: #b89a7b;
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    .nav-links a:hover {
+      color: #b89a7b;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      color: #2e2a27;
+      cursor: pointer;
+      padding: 0.2rem 0.4rem;
+      animation: fadeSlideDown 0.8s ease forwards;
+    }
+
+    /* ----- HERO (with parallax-like animation) ----- */
+    .hero {
+      padding: 4rem 0 5rem;
+      background: #f4eee8;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 60%;
+      height: 150%;
+      background: radial-gradient(circle at 70% 50%, rgba(184, 154, 123, 0.06) 0%, transparent 70%);
+      animation: floatBg 12s ease-in-out infinite alternate;
+    }
+    @keyframes floatBg {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      100% {
+        transform: translate(-30px, 20px) scale(1.1);
+      }
+    }
+
+    .hero-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-content {
+      flex: 1 1 45%;
+      animation: fadeSlideUp 1s ease forwards;
+    }
+    .hero-content h1 {
+      font-size: 4rem;
+      line-height: 1.05;
+      margin-bottom: 0.6rem;
+      color: #1f1b18;
+    }
+    .hero-content h1 i {
+      color: #b89a7b;
+      font-style: italic;
+      font-weight: 700;
+    }
+    .hero-content p {
+      font-size: 1.15rem;
+      color: #4a413c;
+      max-width: 480px;
+      margin: 1.2rem 0 2rem;
+      font-weight: 300;
+      animation: fadeSlideUp 1s ease 0.2s forwards;
+      opacity: 0;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeSlideUp 1s ease 0.4s forwards;
+      opacity: 0;
+    }
+    .hero-image {
+      flex: 1 1 45%;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #ece3da;
+      border-radius: 2px;
+      position: relative;
+      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.1);
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23b89a7b" opacity="0.05"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 120px;
+      padding: 1.5rem;
+      animation: fadeSlideUp 1s ease 0.3s forwards;
+      opacity: 0;
+      overflow: hidden;
+    }
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(184, 154, 123, 0.05) 0%, transparent 50%);
+      animation: shimmer 6s ease-in-out infinite alternate;
+    }
+    @keyframes shimmer {
+      0% {
+        opacity: 0.3;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+    }
+    .hero-image .brand-tag {
+      background: rgba(255, 248, 240, 0.92);
+      backdrop-filter: blur(8px);
+      padding: 18px 32px;
+      border: 1px solid rgba(184, 154, 123, 0.15);
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      color: #2e2a27;
+      z-index: 2;
+      text-align: center;
+      width: 100%;
+      max-width: 340px;
+      animation: pulseGlow 3s ease-in-out infinite alternate;
+    }
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 0 0 0 rgba(184, 154, 123, 0.1);
+      }
+      100% {
+        box-shadow: 0 0 30px 10px rgba(184, 154, 123, 0.05);
+      }
+    }
+    .hero-image .brand-tag small {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #6f6259;
+      margin-top: 4px;
+    }
+    .hero-image .image-label {
+      position: absolute;
+      bottom: 16px;
+      right: 18px;
+      color: #2e2a27;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      background: rgba(255, 248, 240, 0.7);
+      padding: 4px 14px;
+      backdrop-filter: blur(4px);
+      z-index: 3;
+      animation: fadeIn 1.5s ease 1s forwards;
+      opacity: 0;
+    }
+    .hero-stats {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1.8rem;
+      font-size: 0.9rem;
+      color: #4a413c;
+      flex-wrap: wrap;
+      animation: fadeSlideUp 1s ease 0.6s forwards;
+      opacity: 0;
+    }
+    .hero-stats span i {
+      color: #b89a7b;
+      margin-right: 4px;
+    }
+
+    /* ----- ANIMATIONS ----- */
+    @keyframes fadeSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeSlideDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* scroll-triggered animations (via Intersection Observer) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.95);
+      transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* ----- SECTIONS ----- */
+    section {
+      padding: 4.5rem 0;
+      position: relative;
+    }
+    .section-header {
+      margin-bottom: 3rem;
+    }
+
+    /* ----- ABOUT (with diagonal accent) ----- */
+    #about {
+      background: #faf7f2;
+    }
+    .about-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: center;
+    }
+    .about-text {
+      flex: 1 1 50%;
+    }
+    .about-text p {
+      font-size: 1rem;
+      color: #4a413c;
+      margin-bottom: 1.2rem;
+      font-weight: 300;
+    }
+    .about-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 2.5rem;
+      margin-top: 1.2rem;
+    }
+    .about-highlights span {
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: #2e2a27;
+      border-left: 2px solid #b89a7b;
+      padding-left: 0.8rem;
+    }
+    .about-image {
+      flex: 1 1 40%;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ede7e0;
+      background: #e8dfd6;
+      position: relative;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23b89a7b" opacity="0.05"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 80px;
+      padding: 1.5rem;
+      transition: all 0.4s ease;
+    }
+    .about-image:hover {
+      transform: scale(1.01);
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.05);
+    }
+    .about-image .brand-badge {
+      background: rgba(255, 248, 240, 0.92);
+      padding: 14px 28px;
+      border: 1px solid rgba(184, 154, 123, 0.15);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      z-index: 2;
+      text-align: center;
+      width: 100%;
+      max-width: 280px;
+      transition: all 0.3s ease;
+    }
+    .about-image .brand-badge small {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #6f6259;
+    }
+
+    /* ----- SERVICES (with hover animations) ----- */
+    #services {
+      background: #f8f3ed;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.8rem;
+    }
+    .service-card {
+      background: #fcf9f5;
+      padding: 1.8rem 1rem;
+      text-align: center;
+      border: 1px solid rgba(184, 154, 123, 0.08);
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(184, 154, 123, 0.03) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .service-card:hover::before {
+      opacity: 1;
+    }
+    .service-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.06);
+      border-color: #b89a7b30;
+    }
+    .service-card i {
+      font-size: 2.2rem;
+      color: #b89a7b;
+      margin-bottom: 0.8rem;
+      transition: transform 0.4s ease;
+      display: inline-block;
+    }
+    .service-card:hover i {
+      transform: scale(1.15) rotate(-3deg);
+    }
+    .service-card h4 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.2px;
+    }
+    .service-card p {
+      font-size: 0.75rem;
+      color: #6f6259;
+      margin-top: 0.2rem;
+      font-weight: 300;
+    }
+
+    /* price list */
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.8rem 1.8rem;
+      margin-top: 1.2rem;
+      background: #fcf9f5;
+      padding: 1.5rem 2rem;
+      border: 1px solid #ede7e0;
+      transition: all 0.3s ease;
+    }
+    .price-grid:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.02);
+    }
+    .price-item {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 300;
+      padding: 0.3rem 0;
+      border-bottom: 1px dashed #ede7e0;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+    .price-item:hover {
+      border-bottom-color: #b89a7b;
+      padding-left: 4px;
+    }
+    .price-item .name {
+      color: #2e2a27;
+    }
+    .price-item .amount {
+      color: #b89a7b;
+      font-weight: 500;
+    }
+
+    /* ----- STATS (with counter animation) ----- */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1.8rem;
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+    .stat-item {
+      background: #fcf9f5;
+      padding: 1.8rem 0.5rem;
+      border: 1px solid #ede7e0;
+      transition: all 0.3s ease;
+    }
+    .stat-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.03);
+    }
+    .stat-item .number {
+      font-size: 2.6rem;
+      font-family: 'Playfair Display', serif;
+      color: #b89a7b;
+      letter-spacing: -0.5px;
+      display: inline-block;
+    }
+    .stat-item .label {
+      font-size: 0.85rem;
+      color: #4a413c;
+      font-weight: 300;
+      margin-top: 0.2rem;
+    }
+
+    /* ----- TESTIMONIALS (with slide animation) ----- */
+    #testimonials {
+      background: #f8f3ed;
+    }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.8rem;
+    }
+    .testimonial-card {
+      background: #fcf9f5;
+      padding: 1.8rem 1.8rem;
+      border-left: 3px solid #b89a7b;
+      transition: all 0.4s ease;
+    }
+    .testimonial-card:hover {
+      transform: translateX(6px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.02);
+    }
+    .testimonial-card p {
+      font-style: italic;
+      font-weight: 300;
+      color: #2e2a27;
+      font-size: 0.95rem;
+    }
+    .testimonial-card .author {
+      margin-top: 1rem;
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.2px;
+      color: #1f1b18;
+    }
+
+    /* ----- GALLERY (with zoom animation) ----- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+    .gallery-item {
+      background: #e8dfd6;
+      aspect-ratio: 1/1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #2e2a27;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      border: 1px solid rgba(255, 255, 240, 0.2);
+      background-image: linear-gradient(145deg, #d9cdc1 0%, #e8dfd6 100%);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(184, 154, 123, 0.05);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+    .gallery-item:hover {
+      transform: scale(1.04) rotate(-1deg);
+      box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.06);
+      z-index: 2;
+    }
+    .gallery-item i {
+      font-size: 2.4rem;
+      opacity: 0.3;
+      color: #2e2a27;
+      margin-bottom: 4px;
+      z-index: 2;
+      transition: transform 0.4s ease;
+    }
+    .gallery-item:hover i {
+      transform: scale(1.1);
+      opacity: 0.5;
+    }
+    .gallery-item .label {
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      opacity: 0.6;
+      background: rgba(255, 248, 240, 0.7);
+      padding: 2px 12px;
+      z-index: 2;
+    }
+
+    /* ----- APPOINTMENT FORM (with focus animation) ----- */
+    #appointment {
+      background: #f4eee8;
+    }
+    .appointment-form {
+      background: #fcf9f5;
+      padding: 2.5rem;
+      border: 1px solid #ede7e0;
+      transition: all 0.3s ease;
+    }
+    .appointment-form:hover {
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.02);
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .form-group label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 0.3rem;
+      color: #6f6259;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #d9cdc1;
+      padding: 0.5rem 0.2rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: #2e2a27;
+      transition: all 0.3s ease;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-bottom-color: #b89a7b;
+      transform: translateY(-1px);
+    }
+    .form-group input:focus+label,
+    .form-group select:focus+label,
+    .form-group textarea:focus+label {
+      color: #b89a7b;
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+    .full-width {
+      grid-column: 1 / -1;
+    }
+    .form-actions {
+      margin-top: 1.8rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    /* ----- CONTACT (with hover effects) ----- */
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+    }
+    .contact-info {
+      flex: 1 1 40%;
+    }
+    .contact-info p {
+      margin-bottom: 0.5rem;
+      font-weight: 300;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+    .contact-info p:hover {
+      transform: translateX(4px);
+    }
+    .contact-info i {
+      width: 1.8rem;
+      color: #b89a7b;
+      transition: transform 0.3s ease;
+    }
+    .contact-info p:hover i {
+      transform: scale(1.1);
+    }
+    .contact-info .highlight-box {
+      background: #fcf9f5;
+      padding: 1rem 1.2rem;
+      border: 1px solid #ede7e0;
+      margin-top: 1.2rem;
+      transition: all 0.3s ease;
+    }
+    .contact-info .highlight-box:hover {
+      border-color: #b89a7b40;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
+    }
+    .contact-info .highlight-box p {
+      margin-bottom: 0.2rem;
+      font-size: 0.9rem;
+    }
+    .contact-info .highlight-box i {
+      width: 1.4rem;
+    }
+    .map-placeholder {
+      flex: 1 1 45%;
+      background: #d9cdc1;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #2e2a27;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      border: 1px solid #ede7e0;
+      position: relative;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23b89a7b" opacity="0.05"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 60px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    .map-placeholder:hover {
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.03);
+    }
+    .map-placeholder .map-text {
+      z-index: 2;
+      background: rgba(255, 248, 240, 0.9);
+      padding: 14px 22px;
+      text-align: center;
+      backdrop-filter: blur(4px);
+      width: 100%;
+      max-width: 320px;
+      transition: all 0.3s ease;
+    }
+    .map-placeholder:hover .map-text {
+      background: rgba(255, 248, 240, 0.96);
+    }
+    .map-placeholder .map-text i {
+      color: #b89a7b;
+      margin-right: 4px;
+    }
+    .map-placeholder .map-text a {
+      display: inline-block;
+      margin-top: 8px;
+      color: #b89a7b;
+      font-size: 0.8rem;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+    .map-placeholder .map-text a:hover {
+      color: #2e2a27;
+    }
+
+    /* ----- FOOTER ----- */
+    .footer {
+      background: #2e2a27;
+      color: #d9cdc1;
+      padding: 2.5rem 0 1.8rem;
+      margin-top: 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2rem;
+    }
+    .footer h5 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      color: #faf7f2;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.5px;
+      font-size: 0.85rem;
+    }
+    .footer a {
+      color: #b89a7b;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: 300;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+    }
+    .footer a:hover {
+      color: #faf7f2;
+      transform: translateX(4px);
+    }
+    .footer .social i {
+      font-size: 1.2rem;
+      margin-right: 0.8rem;
+      color: #b89a7b;
+      transition: all 0.3s ease;
+    }
+    .footer .social i:hover {
+      color: #faf7f2;
+      transform: translateY(-3px) scale(1.1);
+    }
+    .footer-bottom {
+      border-top: 1px solid #4a413c;
+      padding-top: 1.5rem;
+      margin-top: 1.8rem;
+      font-size: 0.75rem;
+      text-align: center;
+      color: #8f7e72;
+    }
+
+    /* ----- RESPONSIVE ----- */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1.2rem;
+      }
+      .navbar {
+        padding: 0.8rem 1.2rem;
+      }
+      .nav-toggle {
+        display: block;
+      }
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 1rem 0 0.5rem;
+        border-top: 1px solid rgba(46, 42, 39, 0.06);
+        background: rgba(250, 247, 242, 0.95);
+        backdrop-filter: blur(8px);
+      }
+      .nav-links.open {
+        display: flex;
+        animation: fadeSlideDown 0.3s ease forwards;
+      }
+      .nav-links a {
+        font-size: 1rem;
+        padding: 0.4rem 0;
+      }
+
+      .hero-content h1 {
+        font-size: 2.8rem;
+      }
+      .hero-content p {
+        font-size: 1rem;
+      }
+      .hero-image {
+        min-height: 260px;
+      }
+      .hero-image .brand-tag {
+        font-size: 1.5rem;
+        padding: 14px 20px;
+      }
+
+      .section-title {
+        font-size: 2.2rem;
+      }
+      .section-sub {
+        font-size: 0.95rem;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+      }
+      .service-card {
+        padding: 1.2rem 0.8rem;
+      }
+      .service-card i {
+        font-size: 1.8rem;
+      }
+      .service-card h4 {
+        font-size: 0.85rem;
+      }
+
+      .price-grid {
+        grid-template-columns: 1fr 1fr;
+        padding: 1.2rem;
+        gap: 0.2rem 1rem;
+      }
+      .price-item {
+        font-size: 0.85rem;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .full-width {
+        grid-column: 1;
+      }
+      .appointment-form {
+        padding: 1.8rem;
+      }
+      .form-actions {
+        justify-content: center;
+      }
+
+      .contact-grid {
+        gap: 1.8rem;
+      }
+      .map-placeholder {
+        min-height: 200px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 0.8rem;
+      }
+      .gallery-item i {
+        font-size: 2rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      .hero-buttons .btn-primary,
+      .hero-buttons .btn-outline,
+      .hero-buttons .btn-whatsapp {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+      }
+      .hero-image {
+        min-height: 200px;
+      }
+      .hero-image .brand-tag {
+        font-size: 1.2rem;
+        padding: 10px 16px;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+      }
+      .price-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.6rem;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+      }
+      .stat-item {
+        padding: 1.2rem 0.3rem;
+      }
+      .stat-item .number {
+        font-size: 2rem;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .footer .social i {
+        margin: 0 0.6rem;
+      }
+      .contact-info .highlight-box {
+        padding: 0.8rem;
+      }
+      .map-placeholder .map-text {
+        padding: 10px 16px;
+        font-size: 0.8rem;
+      }
+      .form-actions {
+        flex-direction: column;
+      }
+      .form-actions .btn-primary,
+      .form-actions .btn-whatsapp {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="navbar">
+    <div class="logo">MakeMyBeauty <span>·</span></div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#appointment">Book</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <h1>Where Beauty <br /><i>Meets Luxury.</i></h1>
+        <p>Experience premium beauty, wellness, and bridal services designed to bring out your confidence.</p>
+        <div class="hero-buttons">
+          <a href="#appointment" class="btn-primary">Book Appointment</a>
+          <a href="#services" class="btn-outline">Explore Services</a>
+        </div>
+        <div class="hero-stats">
+          <span><i class="fas fa-star"></i> 4.7 (253+ reviews)</span>
+          <span><i class="fas fa-map-pin"></i> Bhubaneswar</span>
+          <span><i class="fab fa-whatsapp" style="color:#25D366;"></i> +91 78737 47474</span>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="brand-tag">
+          MAKE MY BEAUTY
+          <small>unisex salon · est. 2024</small>
+        </div>
+        <div class="image-label">✦ premium studio</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text reveal-left">
+          <h2 class="section-title">Crafted with care</h2>
+          <p>At MakeMyBeauty Unisex Salon, we believe beauty is personal. Our space in IRC Village, Bhubaneswar, is designed to be a sanctuary — where luxury meets warmth, and every guest leaves feeling renewed.</p>
+          <p>With a team of experienced professionals, we combine precision, hygiene, and premium products to deliver results that speak for themselves.</p>
+          <div class="about-highlights">
+            <span>✦ personalised consultation</span>
+            <span>✦ hygienic environment</span>
+            <span>✦ premium products</span>
+          </div>
+        </div>
+        <div class="about-image reveal-right">
+          <div class="brand-badge">
+            OROCCAN
+            <small>premium hair care</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Signature services</h2>
+        <p class="section-sub">Tailored for every guest — from precision haircuts to bridal artistry.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal-scale"><i class="fas fa-cut"></i><h4>Haircut</h4><p>precision styling</p></div>
+        <div class="service-card reveal-scale" style="transition-delay:0.05s;"><i class="fas fa-wind"></i><h4>Blow Dry</h4><p>volume &amp; shine</p></div>
+        <div class="service-card reveal-scale" style="transition-delay:0.1s;"><i class="fas fa-spa"></i><h4>Facials</h4><p>renew &amp; glow</p></div>
+        <div class="service-card reveal-scale" style="transition-delay:0.15s;"><i class="fas fa-hand-sparkles"></i><h4>Manicure</h4><p>perfect finish</p></div>
+        <div class="service-card reveal-scale" style="transition-delay:0.2s;"><i class="fas fa-bolt"></i><h4>Balayage</h4><p>sun-kissed colour</p></div>
+        <div class="service-card reveal-scale" style="transition-delay:0.25s;"><i class="fas fa-ring"></i><h4>Bridal Makeup</h4><p>timeless elegance</p></div>
+        <div class="service-card reveal-scale" style="transition-delay:0.3s;"><i class="fas fa-feather"></i><h4>Threading</h4><p>precision shaping</p></div>
+        <div class="service-card reveal-scale" style="transition-delay:0.35s;"><i class="fas fa-hand-spa"></i><h4>Massage</h4><p>relax &amp; restore</p></div>
+      </div>
+
+      <!-- Price List -->
+      <div style="margin-top: 2.5rem;" class="reveal">
+        <h3 style="font-family: 'Playfair Display', serif; font-weight: 400; margin-bottom: 0.8rem; color: #2e2a27;">Our pricing</h3>
+        <div class="price-grid">
+          <div class="price-item"><span class="name">Haircut</span><span class="amount">₹700</span></div>
+          <div class="price-item"><span class="name">Flavour Wax</span><span class="amount">₹350</span></div>
+          <div class="price-item"><span class="name">Care Spa</span><span class="amount">₹900</span></div>
+          <div class="price-item"><span class="name">Age Flavour Wax</span><span class="amount">₹500</span></div>
+          <div class="price-item"><span class="name">Makeup</span><span class="amount">₹1500</span></div>
+          <div class="price-item"><span class="name">Hair Spa</span><span class="amount">₹600</span></div>
+          <div class="price-item"><span class="name">Bridal Package</span><span class="amount">₹3,500+</span></div>
+        </div>
+      </div>
+
+      <p style="margin-top:2rem; font-weight:300; color:#4a413c; text-align:center; border-top:1px solid #ede7e0; padding-top:1.8rem; font-size:0.9rem;" class="reveal">✦ Hair · Skin · Waxing · Nails · Bridal · Wellness ✦</p>
+    </div>
+  </section>
+
+  <!-- ===== WHY CHOOSE ===== -->
+  <section>
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Why choose us</h2>
+        <p class="section-sub">Recognised by 253+ happy clients in Bhubaneswar.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-item reveal-scale"><div class="number" data-count="253">253+</div><div class="label">happy clients</div></div>
+        <div class="stat-item reveal-scale" style="transition-delay:0.1s;"><div class="number">4.7</div><div class="label">Google rating</div></div>
+        <div class="stat-item reveal-scale" style="transition-delay:0.2s;"><div class="number">★</div><div class="label">experienced pros</div></div>
+        <div class="stat-item reveal-scale" style="transition-delay:0.3s;"><div class="number">✦</div><div class="label">hygienic &amp; premium</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Client stories</h2>
+        <p class="section-sub">Real experiences from our community.</p>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card reveal-left"><p>“The bridal makeup was flawless — I felt like myself, only more radiant. Every detail was perfect.”</p><div class="author">— Ananya R.</div></div>
+        <div class="testimonial-card reveal-scale" style="transition-delay:0.1s;"><p>“Impeccable hygiene, warm staff, and the best haircut I've had in years. Truly a luxury experience.”</p><div class="author">— Priya S.</div></div>
+        <div class="testimonial-card reveal-right" style="transition-delay:0.2s;"><p>“MakeMyBeauty is my go-to for nails and facials. They listen and deliver exactly what you want.”</p><div class="author">— Sneha M.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section>
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Our studio</h2>
+        <p class="section-sub">Moments of beauty, transformation, and elegance.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item reveal-scale"><i class="fas fa-chair"></i><span class="label">salon</span></div>
+        <div class="gallery-item reveal-scale" style="transition-delay:0.05s;"><i class="fas fa-paint-brush"></i><span class="label">makeup</span></div>
+        <div class="gallery-item reveal-scale" style="transition-delay:0.1s;"><i class="fas fa-hand-sparkles"></i><span class="label">nails</span></div>
+        <div class="gallery-item reveal-scale" style="transition-delay:0.15s;"><i class="fas fa-leaf"></i><span class="label">organic</span></div>
+        <div class="gallery-item reveal-scale" style="transition-delay:0.2s;"><i class="fas fa-spa"></i><span class="label">wellness</span></div>
+        <div class="gallery-item reveal-scale" style="transition-delay:0.25s;"><i class="fas fa-ring"></i><span class="label">bridal</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== APPOINTMENT ===== -->
+  <section id="appointment">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Book your moment</h2>
+        <p class="section-sub">Reserve your premium experience — we'll confirm within 2 hours.</p>
+      </div>
+      <div class="appointment-form reveal">
+        <form>
+          <div class="form-grid">
+            <div class="form-group"><label>Full name</label><input type="text" placeholder="Your name" /></div>
+            <div class="form-group"><label>Phone number</label><input type="tel" placeholder="+91" /></div>
+            <div class="form-group"><label>Service</label>
+              <select>
+                <option>Haircut &amp; styling</option>
+                <option>Bridal makeup</option>
+                <option>Facial &amp; skincare</option>
+                <option>Nail art</option>
+                <option>Waxing &amp; threading</option>
+                <option>Massage &amp; wellness</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Preferred date &amp; time</label><input type="datetime-local" /></div>
+            <div class="form-group full-width"><label>Special requests</label><textarea placeholder="Any preferences or allergies..."></textarea></div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Book appointment</button>
+            <a href="https://wa.me/917873747474?text=Hi%20MakeMyBeauty%2C%20I%27d%20like%20to%20book%20an%20appointment" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+          <h2 class="section-title" style="margin-bottom:1rem;">Visit us</h2>
+          <p><i class="fas fa-map-pin"></i> N1-341, Block N1, IRC Village, Nayapalli, Bhubaneswar, Odisha 751015</p>
+          <p><i class="fas fa-phone"></i> +91 78737 47474</p>
+          <p><i class="fab fa-whatsapp" style="color:#25D366; width:1.8rem;"></i> <a href="https://wa.me/917873747474" style="color:#2e2a27; text-decoration:none;">+91 78737 47474 (WhatsApp)</a></p>
+          <p><i class="fas fa-clock"></i> Open daily · 10:00 AM – 9:00 PM</p>
+          <p style="margin-top:1rem; font-weight:300; border-top:1px solid #ede7e0; padding-top:1rem;"><i class="fas fa-star" style="color:#b89a7b;"></i> 4.7 · 253+ Google reviews</p>
+
+          <div class="highlight-box">
+            <p><i class="fas fa-store"></i> <strong>Also at:</strong></p>
+            <p style="font-size:0.85rem; margin-left:1.8rem;">No 81/175/255/555, 3rd Floor, Road, Peta, Near Basar India</p>
+            <p style="font-size:0.85rem; margin-left:1.8rem;"><i class="fas fa-phone" style="width:auto; margin-right:6px;"></i> +91 95880 80808</p>
+            <p style="font-size:0.85rem; margin-left:1.8rem;"><i class="fas fa-map-pin" style="width:auto; margin-right:6px;"></i> Madhusudan Nagar, Nayapalli</p>
+          </div>
+        </div>
+        <div class="map-placeholder reveal-right">
+          <div class="map-text">
+            <i class="fas fa-map"></i> Google Maps · IRC Village
+            <small style="display: block; font-size: 0.7rem; margin-top: 4px; opacity: 0.6;">Nayapalli, Bhubaneswar · Odisha 751015</small>
+            <a href="https://maps.google.com/maps?q=N1-341+Block+N1+IRC+Village+Nayapalli+Bhubaneswar" target="_blank">Open in Google Maps →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h5>MakeMyBeauty</h5>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#appointment">Book</a>
+        </div>
+        <div>
+          <h5>Services</h5>
+          <a href="#">Hair</a>
+          <a href="#">Skin</a>
+          <a href="#">Bridal</a>
+          <a href="#">Wellness</a>
+        </div>
+        <div>
+          <h5>Contact</h5>
+          <a href="tel:+917873747474">+91 78737 47474</a>
+          <a href="https://wa.me/917873747474" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          <a href="mailto:info@makemybeauty.in">info@makemybeauty.in</a>
+          <div class="social" style="margin-top:0.6rem;">
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-youtube"></i>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2026 MakeMyBeauty Unisex Salon · Bhubaneswar · luxury studio
+        <br />
+        <span style="font-size:0.65rem; opacity:0.5;">N1-341, Block N1, IRC Village, Nayapalli, Odisha 751015</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // ----- Mobile Nav Toggle -----
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggle = document.getElementById('navToggle');
+      const links = document.getElementById('navLinks');
+      if (toggle && links) {
+        toggle.addEventListener('click', function() {
+          links.classList.toggle('open');
+          const icon = toggle.querySelector('i');
+          if (icon) {
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+          }
+        });
+        links.querySelectorAll('a').forEach(function(link) {
+          link.addEventListener('click', function() {
+            links.classList.remove('open');
+            const icon = toggle.querySelector('i');
+            if (icon) {
+              icon.classList.add('fa-bars');
+              icon.classList.remove('fa-times');
+            }
+          });
+        });
+      }
+    });
+
+    // ----- Intersection Observer for scroll animations -----
+    document.addEventListener('DOMContentLoaded', function() {
+      const elements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.08,
+        rootMargin: '0px 0px -20px 0px'
+      });
+      elements.forEach(el => observer.observe(el));
+
+      // ----- Counter animation for stats -----
+      const statNumbers = document.querySelectorAll('.stat-item .number');
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const text = el.textContent;
+            if (text.includes('+')) {
+              const num = parseInt(text.replace('+', ''));
+              if (!isNaN(num)) {
+                animateCounter(el, num, 1500);
+              }
+            }
+            counterObserver.unobserve(el);
+          }
+        });
+      }, { threshold: 0.5 });
+      statNumbers.forEach(el => counterObserver.observe(el));
+
+      function animateCounter(el, target, duration) {
+        let start = 0;
+        const startTime = performance.now();
+        const step = (currentTime) => {
+          const progress = Math.min((currentTime - startTime) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = Math.floor(eased * target);
+          el.textContent = current + '+';
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = target + '+';
+          }
+        };
+        requestAnimationFrame(step);
+      }
+    });
+  </script>
+
+</body>
+</html>
